@@ -12,4 +12,6 @@ add_executable(DMS_Practice1_ main.cpp
         DoubleLinkedList/DblLnkdList.h
         Set/Set.cpp
         Set/Set.h
+        Dao.cpp
+        Dao.h
 )
