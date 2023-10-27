@@ -1,15 +1,16 @@
 #include "Dao.h"
-#include <fstream>
 
-//закрывать файлы
-//хранение в 1 файле
-//строковый тип даты
-//удалить лишние функции
+//--file <filename.txt> --type <stack/queue/hashmap/set>
+// --query <
+//SADD SREM SISMEMBER
+//SPUSH SPOP
+//QPUSH QPOP
+//HSET HDEL HGET>
 
 int main(int argc, char* argv[]) {
+
     string path;
     string type;
-
     for (int i = 1; i < argc; i++) {
         string arg = argv[i];
         if (arg == "--file"){

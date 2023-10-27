@@ -26,7 +26,6 @@ Set* createSet() {
 }
 
 void insertSet(Set* set,const std::string& data){
-
     if (set->count >= SIZE){
         std::cout << "set is full" << std::endl;
         return;
@@ -86,8 +85,7 @@ void deleteSetItem(Set* set, const std::string& data){
 
 std::string SearchSetItem(Set* set, const std::string& data){
     if (set == nullptr){
-        std::cout << "set is empty" << std::endl;
-        return "";
+        return "set is empty";
     }
     int index = SetHashFun(data);
     SetItem* item = set->items[index];
@@ -104,5 +102,5 @@ std::string SearchSetItem(Set* set, const std::string& data){
             }
         }
     }
-    return "";
+    return "not found :(";
 }

@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.26)
 project(DMS_Practice1_)
 
 set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_EXE_LINKER_FLAGS "-static")
 
 add_executable(DMS_Practice1_ main.cpp
         SingleLinkedList/SinglyLinkedList.cpp

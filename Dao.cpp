@@ -9,27 +9,23 @@ void stackDao(const string& path,const int& argc,char* argv[]){
             if(fileRead.peek() == EOF){
                 break;
             }
-            int item;
+            string item;
             fileRead >> item;
             addToEndSingleList(head,item);
         }
     }
-
-    cout << endl;
-
     for (int i = 1; i < argc; i++) {
         string arg = argv[i];
         if (arg == "--query"){
             string query = argv[i+1];
             if (query == "SPUSH"){
-                pushSingleList(head,stoi(argv[i+2]));
+                pushSingleList(head,argv[i+2]);
             }
             if (query == "SPOP"){
                 cout << popSingleList(head) << endl;
             }
         }
     }
-
     if (head != nullptr){
         ofstream returnedFile;
         returnedFile.open(path);
@@ -41,14 +37,13 @@ void stackDao(const string& path,const int& argc,char* argv[]){
                 returnedFile << currentNode->data << endl;
             }
             currentNode = currentNode->next;
-            returnedFile.close();
         }
+        returnedFile.close();
     } else{
         ofstream returnedFile;
         returnedFile.open(path);
         returnedFile.close();
     }
-
 }
 
 void queueDao(const string& path,const int& argc,char* argv[]){
@@ -60,25 +55,25 @@ void queueDao(const string& path,const int& argc,char* argv[]){
             if(fileRead.peek() == EOF){
                 break;
             }
-            int item;
+            string item;
             fileRead >> item;
-            enqueueDoubleList(list,item);
+            if (!item.empty()){
+                enqueueDoubleList(list,item);
+            }
         }
     }
-
     for (int i = 1; i < argc; i++) {
         string arg = argv[i];
         if (arg == "--query"){
             string query = argv[i+1];
             if (query == "QPUSH"){
-                enqueueDoubleList(list,stoi(argv[i+2]));
+                enqueueDoubleList(list,argv[i+2]);
             }
             if (query == "QPOP"){
                 cout << dequeueDoubleList(list) << endl;
             }
         }
     }
-
     if (list.head != nullptr){
         ofstream returnedFile;
         returnedFile.open(path);
@@ -90,8 +85,8 @@ void queueDao(const string& path,const int& argc,char* argv[]){
                 returnedFile << currentNode->data << endl;
             }
             currentNode = currentNode->next;
-            returnedFile.close();
         }
+        returnedFile.close();
     } else{
         ofstream returnedFile;
         returnedFile.open(path);
@@ -108,7 +103,7 @@ void hashMapDao(const string& path,const int& argc,char* argv[]){
         while (!fileRead.eof()){
             string tableItemKey;
             fileRead >> tableItemKey;
-            int tableItemData;
+            string tableItemData;
             fileRead >> tableItemData;
             insertHashMap(table,tableItemKey,tableItemData);
         }
@@ -119,7 +114,7 @@ void hashMapDao(const string& path,const int& argc,char* argv[]){
             string query = argv[i+1];
             if (query == "HSET"){
                 string tableItemKey = argv[i+2];
-                int tableItemData = stoi(argv[i+3]);
+                string tableItemData = argv[i+3];
                 insertHashMap(table,tableItemKey,tableItemData);
             }
             if (query == "HDEL"){
