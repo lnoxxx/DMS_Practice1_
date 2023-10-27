@@ -20,8 +20,8 @@ string dequeueDoubleList(DLList& list){
     if(list.tail == nullptr){
         return "list empty";
     }
-    NodeDoubleList* dequeueNode = list.tail;
-    if (list.head == dequeueNode){
+    NodeDoubleList* dequeueNode = list.head;
+    if (list.tail == dequeueNode){
         string result = dequeueNode->data;
         delete dequeueNode;
         list.head = nullptr;
@@ -29,8 +29,8 @@ string dequeueDoubleList(DLList& list){
         list.size--;
         return result;
     }
-    list.tail = dequeueNode->prev;
-    dequeueNode->prev->next = nullptr;
+    list.head = dequeueNode->next;
+    dequeueNode->next->prev = nullptr;
     string result = dequeueNode->data;
     delete dequeueNode;
     list.size--;
